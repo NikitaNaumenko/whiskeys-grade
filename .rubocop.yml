@@ -14,7 +14,7 @@ AllCops:
 require:
   - rubocop-rails
   - rubocop-performance
-  - rubocop-minitest
+  - rubocop-rspec
 
 Rails:
   Enabled: true

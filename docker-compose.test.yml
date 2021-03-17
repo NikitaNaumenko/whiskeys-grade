@@ -15,6 +15,10 @@ services:
       context: .
       dockerfile: Dockerfile
     command: "make ci-check"
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: ''
+      DB_HOST: postgres
     depends_on:
       - postgres
 
