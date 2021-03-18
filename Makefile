@@ -41,7 +41,7 @@ db-reset:
 	bin/rails db:drop || true
 	bin/rails db:create || true
 	bin/rails db:migrate || true
-	bin/rails db:fixtures:load || true
+	bin/rails db:seed || true
 
 lint:
 	git ls-files -m | xargs ls -1 2>/dev/null | xargs bundle exec rubocop

@@ -1,0 +1,8 @@
+= content_for :header do
+  = @whisky
+
+.row
+  .col-6
+    p.fs-3
+      = @whisky.description
+    = link_to t('.add_review'), '#', class: 'btn btn-primary'

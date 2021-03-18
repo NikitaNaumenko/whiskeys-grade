@@ -26,7 +26,6 @@ RSpec.describe 'Sessions', type: :request do
 
   describe 'DELETE /session' do
     let(:user) { create(:user) }
-    let(:email) { user.email }
 
     before do
       login(user)
@@ -34,6 +33,7 @@ RSpec.describe 'Sessions', type: :request do
 
     it 'logged out' do
       delete session_path
+
       expect(response).to have_http_status(:found)
       expect(response).to redirect_to(root_path)
     end
