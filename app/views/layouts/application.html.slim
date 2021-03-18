@@ -10,14 +10,14 @@ html.h-100 lang="#{I18n.locale}"
   body.d-flex.flex-column.h-100
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container-fluid
-        a.navbar-brand href="#"  Navbar
+        a.navbar-brand href="#"  Flavour Whiskeys
         button.navbar-toggler aria-controls="navbarNav" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
           ul.navbar-nav.flex-grow-1
             li.me-md-auto
             - if signed_in?
-              = nav_menu_item current_user.nickname
+              = nav_menu_item current_user.email
               = nav_menu_item 'Log out', session_path, method: :delete
             - else
               = nav_menu_item 'Sign in', new_session_path

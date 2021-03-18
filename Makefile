@@ -28,10 +28,10 @@ start-webpacker:
 	bin/webpack-dev-server
 
 test:
-	bundle exec rspec
+	bundle exec rspec spec
 
 compose:
-	docker-compose up -d db
+	docker-compose up -d postgres
 
 db-prepare:
 	bin/rails db:drop || true

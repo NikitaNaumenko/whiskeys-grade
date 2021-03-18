@@ -1,0 +1,7 @@
+en:
+  flash:
+    web:
+      sessions:
+        create:
+          success: Successfully logged in
+

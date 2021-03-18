@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_secure_password validations: false
 
-  validates :email, presence: true, uniqueness: { case_sensitive: true }
+  validates :email, presence: true
 
   def guest?
     false

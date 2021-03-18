@@ -5,6 +5,7 @@ class User::SignUpForm < User
 
   permit :email, :password
 
+  validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :password, presence: true
 
   def email=(email)

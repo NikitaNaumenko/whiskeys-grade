@@ -1,0 +1,14 @@
+en:
+  views:
+    sessions:
+      new:
+        sign_in: Sign in
+        dont_have_account: Dont have account?
+        register: Register
+    users:
+      new:
+        sign_up: Sign up
+        have_account: Have account?
+        sign_in: Sign in
+
+
