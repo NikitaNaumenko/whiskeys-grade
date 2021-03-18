@@ -1,5 +1,5 @@
 en:
-  views:
+  web:
     sessions:
       new:
         sign_in: Sign in
@@ -10,5 +10,12 @@ en:
         sign_up: Sign up
         have_account: Have account?
         sign_in: Sign in
+    whiskies:
+      index:
+        new: Add whisky
+      show:
+        add_review: Add review
+      new:
+        header: Create whisky
 
 

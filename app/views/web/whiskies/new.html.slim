@@ -1,0 +1,12 @@
+.row.justify-content-center
+  .col-sm-8.col-md-7.col-lg-6
+    .card
+      .card-body.p-4.p-lg-5
+        h1.mb-4.mb-lg-5.text-center = t('.header')
+        = simple_form_for @whisky, url: whiskies_path do |f|
+          = f.input :title
+          = f.input :description
+          = f.association :brand, label_method: :name, value_method: :id, include_blank: false
+
+          .form-group.mt-5
+            = f.submit class: 'btn btn-primary mb-2 w-100'

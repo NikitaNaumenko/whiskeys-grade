@@ -1,4 +1,4 @@
-# User.create(email: 'user@mail.ru', password: 'password')
+User.create(email: 'user@mail.ru', password: 'password')
 brand = Whisky::Brand.find_or_create_by(name: 'Nikka', country: 'Japan')
 brand.whiskies.find_or_create_by(title: 'From the barrel',
                                  description: 'Japanese whiskey')

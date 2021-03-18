@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   validates :email, presence: true
+  enum role: { user: 0, admin: 1 }, _prefix: true
 
   def guest?
     false
