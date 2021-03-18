@@ -8,9 +8,22 @@ ARGS = $(filter-out $@,$(MAKECMDGOALS))
 setup:
 	bin/setup
 
-start-rails:
-	rm -rf tmp/pids/server.pid
-	bundle exec rails s -p 3000 -b '0.0.0.0'
+start:
+	bundle exec heroku local
+
+lsp-configure:
+	bundle exec yard gems
+	bundle exec solargraph bundle
+
+deploy:
+	git push heroku master
+
+heroku-console:
+	heroku run rails console
+
+heroku-logs:
+	heroku logs --tail
+
 start-webpacker:
 	bin/webpack-dev-server
 
@@ -23,7 +36,6 @@ compose:
 db-prepare:
 	bin/rails db:drop || true
 	bin/rails db:prepare || true
-	bin/rails db:fixtures:load || true
 
 db-reset:
 	bin/rails db:drop || true
@@ -40,6 +52,6 @@ lint-autofix:
 ci-lint:
 	git diff-tree -r --diff-filter=CDMR --name-only head origin/master | xargs bundle exec rubocop --force-exclusion
 
-ci-check: test ci-lint
+ci-check: db-prepare test ci-lint
 
 .PHONY: test

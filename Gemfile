@@ -45,6 +45,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm'
 gem 'active_form_model'
+gem 'foreman'
 gem 'gon'
 gem 'rails-i18n'
 gem 'simple_form'
