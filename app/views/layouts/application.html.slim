@@ -1,0 +1,39 @@
+doctype html
+html.h-100 lang="#{I18n.locale}"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Code
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_packs_with_chunks_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body.d-flex.flex-column.h-100
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container-fluid
+        a.navbar-brand href="#"  Navbar
+        button.navbar-toggler aria-controls="navbarNav" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button"
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.flex-grow-1
+            li.me-md-auto
+            - if signed_in?
+              = nav_menu_item current_user.nickname
+              = nav_menu_item 'Log out', session_path, method: :delete
+            - else
+              = nav_menu_item 'Sign in', new_session_path
+              = nav_menu_item 'Sign up', new_user_path
+
+    - flash.each do |name, msg|
+      - let 'error' => 'danger', 'warning' => 'warning', 'info' => 'info', 'success' => 'success', 'alert' => 'warning', 'recaptcha_error' => 'danger' do |mapping|
+        .alert.alert-dismissable.rounded-0.mb-0[class="alert-#{mapping[name]}"]
+          button.close type='button' data-dismiss='alert' aria-hidden='true' &times;
+          = msg
+
+    main.flex-fill.my-5
+      - let yield :header do |header|
+        - if header.present?
+          .container
+            h1.my-3= yield :header
+
+      .container-xl
+        = yield

@@ -15,7 +15,7 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 # require 'action_cable/engine'
 # require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -34,7 +34,19 @@ module WhiskeysGrade
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.stylesheets     false
+      g.javascripts     false
+      g.helper          false
+      g.channel         assets: false
+      g.system_tests    false
+
+      g.factory_bot suffix: 'factory'
+      g.view_specs        false
+      g.helper_specs      false
+      g.controller_specs  false
+      g.integration_specs false
+      g.models_specs false
+    end
   end
 end
