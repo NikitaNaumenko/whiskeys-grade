@@ -15,7 +15,7 @@ start-webpacker:
 	bin/webpack-dev-server
 
 test:
-	bin/rails test -d
+	bundle exec rspec
 
 compose:
 	docker-compose up -d db
@@ -39,6 +39,7 @@ lint-autofix:
 
 ci-lint:
 	git diff-tree -r --diff-filter=CDMR --name-only head origin/master | xargs bundle exec rubocop --force-exclusion
+
 ci-check: test ci-lint
 
 .PHONY: test
