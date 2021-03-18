@@ -37,6 +37,8 @@ lint:
 lint-autofix:
 	git ls-files -m | xargs ls -1 2>/dev/null | xargs bundle exec rubocop -a
 
-ci-check: test lint
+ci-lint:
+	git diff-tree -r --diff-filter=CDMR --name-only head origin/master | xargs bundle exec rubocop --force-exclusion
+ci-check: test ci-lint
 
 .PHONY: test
