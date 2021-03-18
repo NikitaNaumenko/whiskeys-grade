@@ -6,7 +6,7 @@ class Web::UsersController < ApplicationController
   end
 
   def create
-    user = User::SignUpForm.new(params[:user])
+    user = User::SignUpForm.new(params[:user_sign_up_form])
 
     if user.save
       f(:success)

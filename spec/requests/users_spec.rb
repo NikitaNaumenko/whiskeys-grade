@@ -17,7 +17,7 @@ RSpec.describe 'Users', type: :request do
     let(:password) { SecureRandom.hex }
 
     it 'creates user' do
-      post users_path, params: { user: { email: email, password: password } }
+      post users_path, params: { user_sign_up_form: { email: email, password: password } }
       expect(response).to have_http_status(:found)
 
       user = User.find_by(email: email)
