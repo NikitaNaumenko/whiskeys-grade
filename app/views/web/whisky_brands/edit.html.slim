@@ -3,6 +3,6 @@
     .card
       .card-body.p-4.p-lg-5
         h1.mb-4.mb-lg-5.text-center = t('.header')
-        = simple_form_for @whisky, url: whisky_path(@whisky) do |f|
+        = simple_form_for @whisky_brand, url: whisky_brand_path(@whisky_brand) do |f|
           = render 'form', form: f
 

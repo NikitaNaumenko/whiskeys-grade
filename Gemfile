@@ -45,6 +45,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm'
 gem 'active_form_model'
+gem 'country_select', '~> 4.0'
 gem 'foreman'
 gem 'gon'
 gem 'pundit'

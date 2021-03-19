@@ -1,0 +1,8 @@
+- if policy(Whisky::Brand).new?
+  .row.mb-2
+    .col-10
+    .col-2.d-flex.justify-content-end
+      = link_to t('.new'), new_whisky_brand_path, class: 'btn btn-primary'
+
+.row
+  = render @whisky_brands

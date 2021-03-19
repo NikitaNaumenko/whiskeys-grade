@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_154445) do
   create_table "whisky_brands", force: :cascade do |t|
     t.string "name"
     t.string "country"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_whisky_brands_on_name", unique: true

@@ -5,6 +5,7 @@ class CreateWhiskyBrands < ActiveRecord::Migration[6.1]
     create_table :whisky_brands do |t|
       t.string :name, index: { unique: true }
       t.string :country
+      t.text :description
 
       t.timestamps
     end

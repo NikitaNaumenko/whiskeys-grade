@@ -1,0 +1,12 @@
+= content_for :header do
+  = @whisky_brand
+
+.row
+  .col-6
+    p.fs-3
+      = @whisky_brand.description
+    p.fs-3
+      = @whisky_brand.country
+    = link_to t('.edit'), edit_whisky_brand_path(@whisky_brand), class: 'btn btn-primary'
+    = link_to t('.delete'), whisky_brand_path(@whisky_brand), method: :delete,
+        class: 'btn btn-primary', data: { confirm: t('.are_you_sure') }
