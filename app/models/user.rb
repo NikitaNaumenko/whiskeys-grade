@@ -17,4 +17,15 @@ class User < ApplicationRecord
 
     authenticate(password)
   end
+
+  def to_builder
+    Jbuilder.new do |user|
+      user.key_format! camelize: :lower
+
+      user.id id
+      user.email email
+      user.is_guest guest?
+      user.is_admin role_admin?
+    end
+  end
 end

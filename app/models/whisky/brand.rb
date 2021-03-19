@@ -5,6 +5,7 @@ class Whisky::Brand < ApplicationRecord
   validates :name, uniqueness: { case_sensitive: true },
                    presence: true, length: { minimum: 5, maximum: 255 }
   validates :country, presence: true
+  validates :description, length: { maximum: 1024 }
 
   def to_s
     name

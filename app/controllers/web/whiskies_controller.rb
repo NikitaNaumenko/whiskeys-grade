@@ -10,6 +10,9 @@ class Web::WhiskiesController < Web::ApplicationController
   def show
     @whisky = Whisky.find(params[:id])
     @reviews = @whisky.reviews.includes(:user).published.order(id: :desc)
+
+    gon.whisky = WhiskySerializer.new(@whisky)
+    gon.reviews = Whisky::ReviewSerializer.new(@reviews)
   end
 
   def new

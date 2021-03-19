@@ -5,6 +5,7 @@ class CreateWhiskyReviews < ActiveRecord::Migration[6.1]
     create_table :whisky_reviews do |t|
       t.belongs_to :user
       t.belongs_to :whisky
+      t.string :summary
       t.string :aasm_state
       t.text :body
       t.integer :taste
