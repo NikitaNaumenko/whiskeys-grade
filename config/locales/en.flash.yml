@@ -4,4 +4,18 @@ en:
       sessions:
         create:
           success: Successfully logged in
+      whiskes:
+        create:
+          success: Whisky was successfully created
+        update:
+          success: Whisky was successfully updated
+        delete:
+          success: Whisky was successfully deleted
+      whisky_brands:
+        create:
+          success: Whisky brand was successfully created
+        update:
+          success: Whisky brand was successfully updated
+        delete:
+          success: Whisky brand was successfully deleted
 

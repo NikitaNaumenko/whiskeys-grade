@@ -16,6 +16,7 @@ html.h-100 lang="#{I18n.locale}"
         #navbarNav.collapse.navbar-collapse
           ul.navbar-nav.flex-grow-1
             = nav_menu_item 'Whiskies', whiskies_path
+            = nav_menu_item 'Brands', whisky_brands_path
             li.me-md-auto
             - if signed_in?
               = nav_menu_item current_user.email

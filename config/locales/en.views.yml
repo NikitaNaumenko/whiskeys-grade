@@ -17,5 +17,21 @@ en:
         add_review: Add review
       new:
         header: Create whisky
-
-
+      edit:
+        header: Edit whisky
+    whisky_brands:
+      buttons: &buttons
+        show: Show Brand
+        edit: Edit Brand
+        delete: Delete brand
+      index:
+        new: Add Whisky Brand
+      show:
+        <<: *buttons
+      whisky_brand:
+        <<: *buttons
+        are_you_sure: Are you sure?
+      new:
+        header: Create Whisky Brand
+      edit:
+        header: Edit Whisky Brand
