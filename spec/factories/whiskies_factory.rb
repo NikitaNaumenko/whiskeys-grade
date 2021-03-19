@@ -5,6 +5,6 @@ FactoryBot.define do
     title { Faker::Beer.name }
     description { Faker::Games::Dota.quote }
 
-    brand { association :brand, factory: :whisky_brand }
+    brand factory: :whisky_brand
   end
 end

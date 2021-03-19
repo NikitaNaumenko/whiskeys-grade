@@ -33,12 +33,15 @@ class Web::WhiskiesController < Web::ApplicationController
   end
 
   def update
-    @whisky = Whisky.find(params[:id])
+    whisky = Whisky.find(params[:id])
 
-    @whisky.assign_attributes(permitted_params)
-    if @whisky.save
+    authorize whisky
+
+    whisky.assign_attributes(permitted_params)
+    if whisky.save
       f(:success)
-      redirect_to whiskies_path
+
+      redirect_to whisky_path(whisky)
     else
       render :edit
     end
@@ -47,6 +50,21 @@ class Web::WhiskiesController < Web::ApplicationController
   def edit
     @whisky = Whisky.find(params[:id])
     authorize @whisky
+  end
+
+  def destroy
+    whisky = Whisky.find(params[:id])
+    authorize whisky
+
+    if whisky.destroy
+      f(:success)
+
+      redirect_to whiskies_path
+    else
+      f(:failure)
+
+      redirect_to whisky_path(whisky)
+    end
   end
 
   private

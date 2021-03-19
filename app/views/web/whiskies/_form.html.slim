@@ -1,0 +1,6 @@
+= form.input :title
+= form.input :description
+= form.association :brand, label_method: :name, value_method: :id, include_blank: false
+
+.form-group.mt-5
+  = form.submit class: 'btn btn-primary mb-2 w-100'
