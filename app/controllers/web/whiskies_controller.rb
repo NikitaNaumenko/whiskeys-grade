@@ -21,27 +21,27 @@ class Web::WhiskiesController < Web::ApplicationController
     authorize Whisky
 
     brand = Whisky::Brand.find(permitted_params[:brand_id])
-    whisky = brand.whiskies.new(permitted_params)
+    @whisky = brand.whiskies.new(permitted_params)
 
-    if whisky.save
+    if @whisky.save
       f(:success)
 
-      redirect_to whisky_path(whisky)
+      redirect_to whisky_path(@whisky)
     else
       render :new
     end
   end
 
   def update
-    whisky = Whisky.find(params[:id])
+    @whisky = Whisky.find(params[:id])
 
-    authorize whisky
+    authorize @whisky
 
-    whisky.assign_attributes(permitted_params)
-    if whisky.save
+    @whisky.assign_attributes(permitted_params)
+    if @whisky.save
       f(:success)
 
-      redirect_to whisky_path(whisky)
+      redirect_to whisky_path(@whisky)
     else
       render :edit
     end

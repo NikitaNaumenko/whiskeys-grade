@@ -24,13 +24,13 @@ en:
         show: Show Brand
         edit: Edit Brand
         delete: Delete brand
+        are_you_sure: Are you sure?
       index:
         new: Add Whisky Brand
       show:
         <<: *buttons
       whisky_brand:
         <<: *buttons
-        are_you_sure: Are you sure?
       new:
         header: Create Whisky Brand
       edit:

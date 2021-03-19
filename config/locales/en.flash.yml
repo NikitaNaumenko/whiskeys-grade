@@ -16,6 +16,6 @@ en:
           success: Whisky brand was successfully created
         update:
           success: Whisky brand was successfully updated
-        delete:
+        destroy:
           success: Whisky brand was successfully deleted
 
