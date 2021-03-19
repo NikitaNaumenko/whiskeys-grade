@@ -2,6 +2,7 @@
 
 class Whisky < ApplicationRecord
   belongs_to :brand
+  has_many :reviews, dependent: :destroy
 
   validates :title, uniqueness: { case_sensitive: true },
                     presence: true, length: { minimum: 5, maximum: 255 }

@@ -1,0 +1,13 @@
+.col
+  .card
+    .card-header
+      = review.user.email
+    .card-body
+      h5.card-title
+        / = review.summary
+        great!
+      p.card-text
+        = review.body
+    .card-footer
+      small.text-muted
+        = l(review.created_at, format: :long)

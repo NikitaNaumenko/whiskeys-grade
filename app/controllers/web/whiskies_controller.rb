@@ -4,11 +4,12 @@ class Web::WhiskiesController < Web::ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @whiskies = Whisky.includes(:brand).order(id: :desc)
+    @whiskies = Whisky.includes(:brand, :reviews).order(id: :desc)
   end
 
   def show
     @whisky = Whisky.find(params[:id])
+    @reviews = @whisky.reviews.includes(:user).published.order(id: :desc)
   end
 
   def new
