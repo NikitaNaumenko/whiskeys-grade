@@ -1,7 +1,11 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require('@rails/webpacker');
+const erb = require('./loaders/erb');
 
 environment.config.externals = {
-  gon: 'gon'
-}
+  gon: 'gon',
+  routes: 'Routes',
+};
 
-module.exports = environment
+environment.loaders.append('erb', erb);
+
+module.exports = environment;

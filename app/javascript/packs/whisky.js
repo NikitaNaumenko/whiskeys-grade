@@ -1,4 +1,3 @@
-import gon from 'gon';
-import app from '../whisky';
+import app from '../whisky/index.jsx';
 
-app(gon)
+app();

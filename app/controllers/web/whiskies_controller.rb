@@ -13,6 +13,8 @@ class Web::WhiskiesController < Web::ApplicationController
 
     gon.whisky = WhiskySerializer.new(@whisky)
     gon.reviews = Whisky::ReviewSerializer.new(@reviews)
+    gon.whisky_colors = Whisky::Review::COLORS_TO_HEX
+    gon.tastes = Whisky::Review.tastes
   end
 
   def new

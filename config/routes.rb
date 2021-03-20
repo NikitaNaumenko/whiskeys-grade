@@ -9,4 +9,12 @@ Rails.application.routes.draw do
     resources :whiskies
     resources :whisky_brands
   end
+
+  namespace :api do
+    resources :whiskies do
+      scope module: :whiskies do
+        resources :reviews
+      end
+    end
+  end
 end

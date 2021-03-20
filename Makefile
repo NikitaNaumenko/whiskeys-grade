@@ -49,6 +49,7 @@ lint:
 lint-autofix:
 	git ls-files -m | xargs ls -1 2>/dev/null | xargs bundle exec rubocop -a
 
+
 ci-lint:
 	git diff-tree -r --diff-filter=CDMR --name-only head origin/master | xargs bundle exec rubocop --force-exclusion
 

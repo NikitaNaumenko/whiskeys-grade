@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_055118) do
   create_table "whisky_reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "whisky_id"
+    t.string "summary"
     t.string "aasm_state"
     t.text "body"
     t.integer "taste"

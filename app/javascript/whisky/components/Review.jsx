@@ -1,10 +1,10 @@
 import React from 'react';
+import ReviewForm from './ReviewForm';
 
 const Review = () => {
-
   return(
-    <div>
-     'jopa'
+    <div className='d-flex justify-content-center'>
+      <ReviewForm />
     </div>
   )
 }
