@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { actions } from '../slices/index.js';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 const ReviewForm = () => {
   const dispatch = useDispatch();
   const { whisky, review, hexColorsMap, tastes, errors } = useSelector((state) => state);

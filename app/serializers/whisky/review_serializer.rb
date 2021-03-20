@@ -4,6 +4,6 @@ class Whisky::ReviewSerializer
   include JSONAPI::Serializer
 
   attributes :summary, :body, :smokiness, :taste, :color, :aasm_state
-  belongs_to :user
-  belongs_to :whisky
+  belongs_to :user, serializer: UserSerializer
+  belongs_to :whisky, serializer: WhiskySerializer
 end

@@ -63,13 +63,11 @@ class Whisky::Review < ApplicationRecord
     treacle: 19
   }
 
-
   validates :summary, length: { maximum: 255 }
   validates :body, presence: true, length: { maximum: 1024 }
   validates :smokiness, presence: true, numericality: { only_integer: true,
                                                         greater_than_or_equal_to: 0,
                                                         less_than_or_equal_to: 5 }
-
 
   aasm do
     state :draft, initial: true

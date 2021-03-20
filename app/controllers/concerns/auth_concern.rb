@@ -23,4 +23,10 @@ module AuthConcern
 
     redirect_to new_session_path
   end
+
+  def api_authenticate_user!
+    return if signed_in?
+
+    head 401
+  end
 end
