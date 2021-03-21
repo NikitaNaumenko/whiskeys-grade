@@ -26,8 +26,7 @@ class Web::WhiskiesController < Web::ApplicationController
   def create
     authorize Whisky
 
-    brand = Whisky::Brand.find(permitted_params[:brand_id])
-    @whisky = brand.whiskies.new(permitted_params)
+    @whisky = Whisky.new(permitted_params)
 
     if @whisky.save
       f(:success)

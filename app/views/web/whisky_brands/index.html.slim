@@ -4,5 +4,5 @@
     .col-2.d-flex.justify-content-end
       = link_to t('.new'), new_whisky_brand_path, class: 'btn btn-primary'
 
-.row
+.row.justify-content-center
   = render partial: "whisky_brand", collection: @whisky_brands

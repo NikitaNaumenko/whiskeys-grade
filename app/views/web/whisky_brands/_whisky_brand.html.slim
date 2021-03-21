@@ -1,10 +1,10 @@
-.col-sm-5
+.col-sm-5.my-3
   .card
     .card-body
       h5.card-title
         = whisky_brand.name
       p.card-text
-        = whisky_brand.description
+        = truncate(whisky_brand.description, length: 75)
       .d-flex.justify-content-end
         = link_to t('.show'), whisky_brand_path(whisky_brand), class: 'btn btn-primary me-2'
         = link_to t('.edit'), edit_whisky_brand_path(whisky_brand), class: 'btn btn-primary me-2'
