@@ -30,9 +30,9 @@ group :test, :development do
   gem 'faker', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'spring'
 end
 
-gem 'spring', group: %i[test development production]
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm'
