@@ -25,7 +25,7 @@ RSpec.describe 'Api Whisky Reviews', type: :request do
         review = Whisky::Review.find(parsed_body['data']['id'])
 
         expect(response).to have_http_status(:ok)
-        expect(review).not_to be_nil
+        expect(review).to be_published
       end
 
       it 'gets errors' do

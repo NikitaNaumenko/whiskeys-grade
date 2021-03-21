@@ -4,11 +4,62 @@ require 'rails_helper'
 
 RSpec.describe 'Whiskies', type: :request do
   describe 'GET /whiskies' do
+    let(:brand) { create(:whisky_brand) }
+    let(:brand2) { create(:whisky_brand) }
+
+    let!(:whisky) { create(:whisky, brand: brand, title: '12 years old') }
+    let!(:whisky2) { create(:whisky, brand: brand2) }
+    let!(:whisky3) { create(:whisky, brand: brand, description: 'Amazing whisky') }
+
     it 'render whiskies' do
       get whiskies_path
 
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:index)
+    end
+
+    context 'with ransack' do
+      it 'returns by title' do
+        query = { title_cont: 'years' }
+        get whiskies_path(q: query)
+
+        whiskies = assigns(:whiskies)
+
+        expect(whiskies).to include(whisky)
+        expect(whiskies).not_to include(whisky2)
+        expect(whiskies).not_to include(whisky3)
+
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns by description' do
+        query = { description_cont: 'whisky' }
+        get whiskies_path(q: query)
+
+        whiskies = assigns(:whiskies)
+
+        expect(whiskies).to include(whisky3)
+        expect(whiskies).not_to include(whisky)
+        expect(whiskies).not_to include(whisky2)
+
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:index)
+      end
+
+      it 'returns by brand_id' do
+        query = { brand_id_eq: brand2.id }
+        get whiskies_path(q: query)
+
+        whiskies = assigns(:whiskies)
+
+        expect(whiskies).to include(whisky2)
+        expect(whiskies).not_to include(whisky)
+        expect(whiskies).not_to include(whisky3)
+
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:index)
+      end
     end
   end
 

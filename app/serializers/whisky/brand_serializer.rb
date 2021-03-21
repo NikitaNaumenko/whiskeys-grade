@@ -3,7 +3,7 @@
 class Whisky::BrandSerializer
   include JSONAPI::Serializer
 
-  attributes :name, :country, :description
+  attributes :id, :name, :country, :description
 
   has_many :whiskies
 end

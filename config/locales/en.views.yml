@@ -1,4 +1,15 @@
 en:
+  layouts:
+    application:
+      title: Flavour whiskies
+      whiskies: Whiskies
+      brands: Brands
+      create_whisky: Add Whisky
+      create_brand: Add Brand of Whisky
+      logout: Log out
+      sign_in: Sign in
+      sign_up: Sign up
+
   web:
     sessions:
       new:

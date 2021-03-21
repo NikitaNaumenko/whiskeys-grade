@@ -13,4 +13,7 @@ en:
         create: Login
       user_sign_up_form:
         create: Sign up
+      q:
+        create: Search
+
 
