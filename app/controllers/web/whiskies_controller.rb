@@ -4,7 +4,8 @@ class Web::WhiskiesController < Web::ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @whiskies = Whisky.includes(:brand, :reviews).order(id: :desc)
+    @q = Whisky.ransack(params[:q])
+    @whiskies = @q.result.includes(:brand, :reviews).order(id: :desc)
   end
 
   def show

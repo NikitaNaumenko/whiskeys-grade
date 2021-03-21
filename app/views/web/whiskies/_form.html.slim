@@ -1,6 +1,8 @@
 = form.input :title
 = form.input :description
-= form.association :brand, label_method: :name, value_method: :id, include_blank: true
+= form.association :brand, label_method: :name,
+    value_method: :id, include_blank: true, input_html: { class: 'form-select' }
+
 
 .form-group.mt-5
   = form.submit class: 'btn btn-primary mb-2 w-100'

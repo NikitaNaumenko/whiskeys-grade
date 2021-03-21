@@ -1,8 +1,12 @@
-- if policy(Whisky).new?
-  .row.mb-2
-    .col-10
-    .col-2.d-flex.justify-content-end
-      = link_to t('.new'), new_whisky_path, class: 'btn btn-primary'
-
+.row.mb-2
+  .col-12
+    = simple_form_for @q, default_search_form_options(url: whiskies_path) do |f|
+      = f.label :title_cont
+      = f.input :title_cont
+      = f.label :description_cont
+      = f.input :description_cont
+      = f.label :brand_id_eq
+      = f.input :brand_id_eq, as: :select, collection: Whisky::Brand.pluck(:name, :id), input_html: { class: 'form-select' }
+      = f.button :submit, class: 'btn btn-primary'
 .row.justify-content-center
   = render @whiskies
