@@ -21,7 +21,6 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'spring'
   gem 'web-console', '>= 4.1.0'
 end
 
@@ -31,6 +30,7 @@ group :test, :development do
   gem 'faker', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'spring'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
