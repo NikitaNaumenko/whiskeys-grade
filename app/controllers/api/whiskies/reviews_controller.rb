@@ -6,10 +6,9 @@ class Api::Whiskies::ReviewsController < Api::Whiskies::ApplicationController
   def create
     review = resource_whisky.reviews.new(permitted_params)
     review.user = current_user
-    review.save
 
-    if review.save
-      render json: Whisky::ReviewSerializer.new(review).serializable_hash
+    if review.publish!
+      render json: Whisky::ReviewSerializer.new(review, include: %i[user]).serializable_hash
     else
       render json: review.errors, status: :unprocessable_entity
     end

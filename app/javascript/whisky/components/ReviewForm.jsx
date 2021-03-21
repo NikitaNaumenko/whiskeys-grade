@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { CirclePicker } from 'react-color';
 import _ from 'lodash';
 import { actions } from '../slices/index.js';
@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const ReviewForm = () => {
   const dispatch = useDispatch();
-  const { whisky, review, hexColorsMap, tastes, errors } = useSelector((state) => state);
+  const { whisky, review, hexColorsMap, showForm, tastes, errors } = useSelector((state) => state);
 
   const renderErrors = (errors) => {
     if (_.isEmpty(errors)) { return null; }
@@ -19,6 +19,9 @@ const ReviewForm = () => {
     )
   }
   const colors = Object.values(hexColorsMap)
+  const handleOnClick = (e) => {
+    dispatch(actions.openForm())
+  }
   const handleChangeBody = (e) => {
     dispatch(actions.changeBody({ reviewBody: e.target.value }))
   }
@@ -38,63 +41,75 @@ const ReviewForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(actions.sendReview(whisky, review))
+    dispatch(actions.sendReview({ whisky, review }))
   }
   const tasteOptions = Object.entries(tastes).map(([key, value]) => <option key={value} value={value}>{key}</option>)
 
-  return(
-        <div className='col-sm-8 col-md-7 col-lg-6'>
-          <div className='card'>
-            <div className='card-body p-4'>
-              <form onSubmit={handleSubmit}>
-                <p className='text-center'>{`Write your review about ${whisky.full_name}`}</p>
-                {renderErrors(errors)}
-                <div className='form-group my-2'>
-                  <label className='form-label' htmlFor='summary'>
-                    Summary:
-                  </label>
-                  <input className="form-control"
-                         id='summary'
-                         value={review.summary}
-                         onChange={handleChangeSummary}/>
+  const renderForm = () => {
+    if (showForm) {
+      return(
+            <div className='col-12'>
+              <div className='card'>
+                <div className='card-body p-4'>
+                  <form onSubmit={handleSubmit}>
+                    <p className='text-center'>{`Write your review about ${whisky.full_name}`}</p>
+                    {renderErrors(errors)}
+                    <div className='form-group my-2'>
+                      <label className='form-label' htmlFor='summary'>
+                        Summary:
+                      </label>
+                      <input className="form-control"
+                             id='summary'
+                             value={review.summary}
+                             onChange={handleChangeSummary}/>
+                    </div>
+                    <div className='form-group my-2'>
+                      <label className='form-label' htmlFor='body'>
+                        Body:
+                      </label>
+                      <textarea id='body'
+                                className="form-control"
+                                value={review.body}
+                                onChange={handleChangeBody}/>
+                    </div>
+                    <div className='form-group my-2'>
+                      <select className="form-select" value={review.taste} onChange={handleChangeTaste}>
+                        {tasteOptions}
+                      </select>
+                    </div>
+                    <div className='form-group my-2'>
+                      <label className='form-label'>Color:</label>
+                      <CirclePicker colors={colors} width={'110%'} onChange={handleChangeColor}/>
+                    </div>
+                    <div className='form-group my-2'>
+                      <label className='form-label' htmlFor='smokiness'>Smokiness:</label>
+                      <input
+                        type="range"
+                        className="form-range"
+                        id="smokiness"
+                        value={review.smokiness}
+                        min={0}
+                        max={5}
+                        onChange={handleChangeSmokiness}/>
+                    </div>
+                    <div className='form-group my-2'>
+                      <input type="submit" value="Submit" className="btn btn-primary"/>
+                    </div>
+                  </form>
                 </div>
-                <div className='form-group my-2'>
-                  <label className='form-label' htmlFor='body'>
-                    Body:
-                  </label>
-                  <textarea id='body'
-                            className="form-control"
-                            value={review.body}
-                            onChange={handleChangeBody}/>
-                </div>
-                <div className='form-group my-2'>
-                  <select className="form-select" value={review.taste} onChange={handleChangeTaste}>
-                    {tasteOptions}
-                  </select>
-                </div>
-                <div className='form-group my-2'>
-                  <label className='form-label'>Color:</label>
-                  <CirclePicker colors={colors} width={'85%'} onChange={handleChangeColor}/>
-                </div>
-                <div className='form-group my-2'>
-                  <label className='form-label' htmlFor='smokiness'>Smokiness:</label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="smokiness"
-                    value={review.smokiness}
-                    min={0}
-                    max={5}
-                    onChange={handleChangeSmokiness}/>
-                </div>
-                <div className='form-group my-2'>
-                  <input type="submit" value="Submit" className="btn btn-primary"/>
-                </div>
-              </form>
             </div>
-        </div>
-      </div>
-  )
+          </div>
+      )
+    } else {
+      return(
+        <button className='btn btn-primary' onClick={handleOnClick}>Write review</button>
+      )
+    }
+  }
+
+  return renderForm()
+
+
 }
 
 export default ReviewForm;

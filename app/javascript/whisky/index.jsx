@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import gon from 'gon';
-import Review from './components/Review';
+import ReviewContainer from './components/ReviewContainer';
 import reducer from './slices/index.js';
+import { mergeBelongsToForRecords } from '../lib/merge_relationship';
 
 export default () => {
-  console.log(gon);
   const preloadedState = {
     whisky: gon.whisky.data.attributes,
-    reviews: gon.reviews.data.map((r) => r.attributes),
+    reviews: mergeBelongsToForRecords(gon.reviews),
     hexColorsMap: gon.whisky_colors,
     tastes: gon.tastes,
+    showForm: false,
     review: {
       body: '',
       summary: '',
@@ -25,7 +26,7 @@ export default () => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <Review />
+      <ReviewContainer />
     </Provider>,
     document.querySelector('#reviews-container'),
   );

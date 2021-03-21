@@ -12,7 +12,7 @@ class Web::WhiskiesController < Web::ApplicationController
     @reviews = @whisky.reviews.includes(:user).published.order(id: :desc)
 
     gon.whisky = WhiskySerializer.new(@whisky)
-    gon.reviews = Whisky::ReviewSerializer.new(@reviews)
+    gon.reviews = Whisky::ReviewSerializer.new(@reviews, include: %i[user])
     gon.whisky_colors = Whisky::Review::COLORS_TO_HEX
     gon.tastes = Whisky::Review.tastes
   end
