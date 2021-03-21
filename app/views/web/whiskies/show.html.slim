@@ -1,15 +1,13 @@
 = content_for :header do
-  = @whisky
+  .text-center
+    = @whisky
 
-.row
+.row.justify-content-center
   .col-6
     p.fs-3
       = @whisky.description
 
 .row.flex-column.align-items-center
   #reviews-container
-  / .mt-2.col-6
-  /   = render partial: 'review', collection: @reviews
-
 
 = javascript_pack_tag 'whisky', 'data-turbolinks-track': 'reload'

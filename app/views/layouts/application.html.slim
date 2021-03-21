@@ -29,7 +29,7 @@ html.h-100 lang="#{I18n.locale}"
     - flash.each do |name, msg|
       - let 'error' => 'danger', 'warning' => 'warning', 'info' => 'info', 'success' => 'success', 'alert' => 'warning', 'recaptcha_error' => 'danger' do |mapping|
         .alert.alert-dismissable.rounded-0.mb-0[class="alert-#{mapping[name]}"]
-          button.close type='button' data-dismiss='alert' aria-hidden='true' &times;
+          button.btn-close type='button' data-dismiss='alert' aria-hidden='true' &times;
           = msg
 
     main.flex-fill.my-5

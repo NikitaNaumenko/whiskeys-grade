@@ -3,20 +3,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Routes from '../../packs/routes.js.erb';
 import axios from '../../lib/axios.js';
-import { mergeBelongsToForRecord } from '../../lib/merge_relationship.js'
-
+import { mergeBelongsToForRecord } from '../../lib/merge_relationship.js';
 
 const sendReview = createAsyncThunk('sendReview', async ({ whisky, review }, { rejectWithValue }) => {
-    const url = Routes.api_whisky_reviews_path(whisky.id, { format: 'json' });
-    const { submitReviewRequest, submitReviewSuccess, submitReviewFailure } = slice.actions;
-    try {
-      const response = await axios.post(url, { review });
-      return response.data;
-    } catch (e) {
-      return rejectWithValue(e.response.data)
-    }
+  const url = Routes.api_whisky_reviews_path(whisky.id, { format: 'json' });
+  try {
+    const response = await axios.post(url, { review });
+    return response.data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
   }
-)
+});
 
 const slice = createSlice({
   name: 'review',
@@ -32,32 +29,11 @@ const slice = createSlice({
       taste: '',
       color: '',
       smokiness: '',
-      errors: {}
+      errors: {},
     },
     sendingState: 'none',
   },
   reducers: {
-    submitReviewRequest(state) {
-      state.errors = {};
-      state.sendingState = 'requested';
-    },
-    submitReviewSuccess(state, { payload }) {
-      state.sendingState = 'success';
-      state.showForm = false;
-      const processedReview = mergeBelongsToForRecord(payload.review)
-      state.reviews = [processedReview, ...state.reviews]
-    },
-    submitReviewFailure(state, { payload }) {
-      // console.log(payload)
-      const normalizedErrors = Object.keys(payload.errors)
-        .reduce((acc, key) => {
-          acc[key] = payload.errors[key].join(', ');
-          return acc;
-        }, {});
-
-      state.errors = normalizedErrors;
-      state.sendintState = 'failure';
-    },
     changeBody(state, { payload }) {
       state.review.body = payload.reviewBody;
     },
@@ -77,21 +53,27 @@ const slice = createSlice({
       state.review.smokiness = payload.smokiness;
     },
     openForm(state) {
-      state.showForm = true
-    }
+      state.showForm = true;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(sendReview.pending, (state) => {
       state.sendingState = 'requested';
     })
       .addCase(sendReview.fulfilled, (state, { payload }) => {
-          console.log(payload)
-          state.sendingState = 'success';
-          state.showForm = false;
-          const processedReview = mergeBelongsToForRecord(payload.data, payload.included)
-          state.reviews = [processedReview, ...state.reviews]
-       }
-      )
+        state.sendingState = 'success';
+        state.showForm = false;
+        const processedReview = mergeBelongsToForRecord(payload.data, payload.included);
+        state.reviews = [processedReview, ...state.reviews];
+        state.review = {
+          body: '',
+          summary: '',
+          taste: '',
+          color: '',
+          smokiness: '',
+          errors: {},
+        };
+      })
       .addCase(sendReview.rejected, (state, { payload }) => {
         const normalizedErrors = Object.keys(payload)
           .reduce((acc, key) => {
@@ -101,24 +83,9 @@ const slice = createSlice({
 
         state.errors = normalizedErrors;
         state.sendintState = 'failure';
-      })
-
-  }
+      });
+  },
 });
-
-// const sendReview = (whisky, review) => async (dispatch) => {
-//   const url = Routes.api_whisky_reviews_path(whisky.id, { format: 'json' });
-//   const { submitReviewRequest, submitReviewSuccess, submitReviewFailure } = slice.actions;
-
-//   try {
-//     dispatch(submitReviewRequest());
-//     const response = await axios.post(url, { review });
-//     dispatch(submitReviewSuccess({ review: response.data }));
-//   } catch (e) {
-//     dispatch(submitReviewFailure({ errors: e.response.data }));
-//     throw e;
-//   }
-// };
 
 export const actions = { ...slice.actions, sendReview };
 export default slice.reducer;

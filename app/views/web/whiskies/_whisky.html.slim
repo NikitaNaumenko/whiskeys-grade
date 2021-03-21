@@ -1,9 +1,11 @@
-.col-sm-4
-  .card
-    .card-body
+.col-sm-4.my-3
+  .card.shadow-sm
+    .card-body.d-flex.flex-column
       h5.card-title
-        = whisky
-      p.card-text
-        = whisky.description
-      = link_to t('.show'), whisky_path(whisky), class: 'btn btn-primary me-2'
-      = link_to t('.add_review'), '#', class: 'btn btn-primary'
+        = truncate(whisky.full_name, length: 30)
+      .card-text
+        = truncate(whisky.description, length: 75)
+      .mt-auto.d-flex
+        .text-muted.p-2= t('.reviews_count', count: whisky.reviews.count)
+        .ms-auto
+          = link_to t('.show'), whisky_path(whisky), class: 'btn btn-link stretched-link'

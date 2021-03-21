@@ -19,6 +19,12 @@ en:
         header: Create whisky
       edit:
         header: Edit whisky
+      whisky:
+        reviews_count:
+          zero: '%{count} reviews'
+          one: '%{count} review'
+          many: '%{count} reviews'
+          other: '%{count} reviews'
     whisky_brands:
       buttons: &buttons
         show: Show Brand

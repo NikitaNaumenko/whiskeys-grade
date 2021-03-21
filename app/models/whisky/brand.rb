@@ -7,6 +7,10 @@ class Whisky::Brand < ApplicationRecord
   validates :country, presence: true
   validates :description, length: { maximum: 1024 }
 
+  def country_name
+    ISO3166::Country[country_code].name
+  end
+
   def to_s
     name
   end
