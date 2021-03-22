@@ -19,13 +19,15 @@ Docker way
 
 Bare-metal way
 ```sh
-make setup
+# change DB_HOST from 0.0.0.0 to postgres
 make compose-services # run postgres
+make setup
 make start # run server (see more Procfile)
 #or
 make start-rails
 # other tab
 make start-webpacker
+# open localhost:3000
 
 make db-reset # reset db
 ```
@@ -34,6 +36,7 @@ Docker way
 ```sh
 make compose-install
 make compose
+# open 0.0.0.0:3000
 
 make compose-db-reset # to reset db
 ```

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::WhiskiesController < Web::ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @q = Whisky.ransack(params[:q])

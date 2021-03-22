@@ -1,5 +1,6 @@
-include make-compose
-include make-app
+include make-compose.mk
+include make-app.mk
+
 # =========================================
 # Makes it possible to run "make aaa bbb" instead of make aaa ARGS="bbb"
 ARGS = $(filter-out $@,$(MAKECMDGOALS))

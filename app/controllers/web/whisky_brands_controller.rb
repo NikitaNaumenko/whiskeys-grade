@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::WhiskyBrandsController < Web::ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @whisky_brands = Whisky::Brand.order(id: :desc)

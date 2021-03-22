@@ -1,5 +1,6 @@
 import React from 'react';
 import { CirclePicker } from 'react-color';
+import gon from 'gon';
 import _ from 'lodash';
 import { actions } from '../slices/index.js';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,6 +45,13 @@ const ReviewForm = () => {
     dispatch(actions.sendReview({ whisky, review }))
   }
   const tasteOptions = Object.entries(tastes).map(([key, value]) => <option key={value} value={value}>{key}</option>)
+  const renderButton = () => {
+    if (gon.current_user.data.attributes.is_guest) {
+      return null;
+    } else {
+      return(<button className='btn btn-primary' onClick={handleOnClick}>Write review</button>);
+    }
+  }
 
   const renderForm = () => {
     if (showForm) {
@@ -101,9 +109,7 @@ const ReviewForm = () => {
           </div>
       )
     } else {
-      return(
-        <button className='btn btn-primary' onClick={handleOnClick}>Write review</button>
-      )
+      return renderButton()
     }
   }
 

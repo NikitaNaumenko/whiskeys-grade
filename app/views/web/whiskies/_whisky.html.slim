@@ -6,6 +6,6 @@
       .card-text
         = truncate(whisky.description, length: 75)
       .mt-auto.d-flex
-        .text-muted.p-2= t('.reviews_count', count: whisky.reviews.count)
+        .text-muted.p-2= t('.reviews_count', count: whisky.reviews_count)
         .ms-auto
           = link_to t('.show'), whisky_path(whisky), class: 'btn btn-link stretched-link'

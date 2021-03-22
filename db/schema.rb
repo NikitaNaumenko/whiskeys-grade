@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_055118) do
   create_table "whiskies", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.integer "reviews_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "brand_id"

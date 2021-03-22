@@ -26,7 +26,7 @@ class Whisky::Review < ApplicationRecord
     treacle: '#411B0C'
   }.with_indifferent_access.freeze
 
-  belongs_to :whisky
+  belongs_to :whisky, counter_cache: true
   belongs_to :user
 
   enum taste: {
