@@ -3,6 +3,33 @@
 version: '3'
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: "make start-rails"
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    volumes:
+      - /tmp:/tmp
+      - .:/app
+    depends_on:
+      - postgres
+
+  webpacker:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: make start-webpacker
+    ports:
+      - "0.0.0.0:3035:3035"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+
   postgres:
     image: postgres:12-alpine
     environment:

@@ -11,6 +11,11 @@ setup:
 start:
 	bundle exec heroku local
 
+start-rails:
+	rm -rf tmp/pids/server.pid
+	bundle exec rails s -p 3000 -b '0.0.0.0'
+
+
 lsp-configure:
 	bundle exec yard gems
 	bundle exec solargraph bundle
@@ -55,4 +60,11 @@ ci-lint:
 
 ci-check: db-prepare test ci-lint
 
+app-install:
+	docker-compose run web make setup
+
+app-db-prepare:
+	docker-compose run web make db-prepare
+
 .PHONY: test
+
