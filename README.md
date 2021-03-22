@@ -40,3 +40,10 @@ make compose
 
 make compose-db-reset # to reset db
 ```
+
+Heroku commands
+```sh
+make heroku-logs # logs
+make heroku-console # console
+make deploy # heroku deploy
+```
