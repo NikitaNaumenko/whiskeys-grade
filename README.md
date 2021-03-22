@@ -1,24 +1,39 @@
-# README
+[![On Push](https://github.com/NikitaNaumenko/whiskeys-grade/actions/workflows/push.yaml/badge.svg)](https://github.com/NikitaNaumenko/whiskeys-grade/actions/workflows/push.yaml)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Whisky grades
+## Setup
+### Required
+Bare-metal way
+* ruby-3.0.0
+* node
+* heroku CLI
+* make
+* docker-compose (for running db inside container)
 
-Things you may want to cover:
+Docker way
+* make
+* docker
+* docker compose
 
-* Ruby version
+### Steps
 
-* System dependencies
+Bare-metal way
+```sh
+make setup
+make compose-services # run postgres
+make start # run server (see more Procfile)
+#or
+make start-rails
+# other tab
+make start-webpacker
 
-* Configuration
+make db-reset # reset db
+```
 
-* Database creation
+Docker way
+```sh
+make compose-install
+make compose
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+make compose-db-reset # to reset db
+```
