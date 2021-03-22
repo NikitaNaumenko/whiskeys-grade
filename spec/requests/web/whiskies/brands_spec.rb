@@ -31,8 +31,8 @@ RSpec.describe 'Whisky Brands', type: :request do
       it 'redirect to session' do
         get whisky_brand_path(brand)
 
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:show)
       end
     end
   end

@@ -80,11 +80,11 @@ RSpec.describe 'Whiskies', type: :request do
     end
 
     context 'when user did`t logged' do
-      it 'redirect to session' do
+      it 'render ok' do
         get whisky_path(whisky)
 
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(new_session_path)
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:show)
       end
     end
   end
