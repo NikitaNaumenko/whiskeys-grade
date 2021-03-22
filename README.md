@@ -27,7 +27,7 @@ make start # run server (see more Procfile)
 make start-rails
 # other tab
 make start-webpacker
-# open localhost:3000
+# open localhost:5000
 
 make db-reset # reset db
 ```
